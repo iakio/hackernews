@@ -18,4 +18,12 @@ defmodule HackernewsWeb.Schema do
       resolve &NewsResolver.feed/3
     end
   end
+
+  mutation do
+    field :post, type: :link do
+      arg :url, non_null(:string)
+      arg :description, non_null(:string)
+      resolve &NewsResolver.create_link/3
+    end
+  end
 end
