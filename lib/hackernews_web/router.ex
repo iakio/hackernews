@@ -11,6 +11,10 @@ defmodule HackernewsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Plug.Parsers,
+      parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
+      pass: ["*/*"],
+      json_decoder: Jason
   end
 
   scope "/", HackernewsWeb do
@@ -19,8 +23,11 @@ defmodule HackernewsWeb.Router do
     get "/", PageController, :index
   end
 
-  scope "/api" do
+  scope "/graphql" do
     pipe_through :api
+
+    forward "/api", Absinthe.Plug,
+      schema: HackernewsWeb.Schema
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: HackernewsWeb.Schema,

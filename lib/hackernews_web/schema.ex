@@ -9,9 +9,13 @@ defmodule HackernewsWeb.Schema do
     field :description, non_null(:string)
   end
 
+  object :feed do
+    field :links, non_null(list_of(non_null(:link)))
+  end
+
   query do
-    field :feed, non_null(list_of(non_null(:link))) do
-      resolve &NewsResolver.all_links/3
+    field :feed, :feed do
+      resolve &NewsResolver.feed/3
     end
   end
 end
