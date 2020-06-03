@@ -3,12 +3,12 @@ import { Link } from "react-router-dom"
 import { withRouter } from "react-router"
 function Header() {
   return (
-    <div>
-      <div>
-        <div>Hacker News</div>
-        <Link to="/">new</Link>
-        <div>|</div>
-        <Link to="/create">submit</Link>
+    <div className="bg-orange-500">
+      <div className="flex flex-row">
+        <div className="mx-2 font-bold">Hacker News</div>
+        <Link className="hover:underline" to="/">new</Link>
+        <div className="mx-2">|</div>
+        <Link className="hover:underline" to="/create">submit</Link>
       </div>
     </div>
   )

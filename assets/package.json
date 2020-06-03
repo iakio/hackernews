@@ -15,7 +15,8 @@
     "react-apollo": "^3.1.5",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -27,6 +28,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^2.3.2",
     "webpack": "4.41.5",

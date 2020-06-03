@@ -15,14 +15,16 @@ export default function CreateLink(props) {
   const [description, setDescriptin] = useState("")
   return (
     <div>
-      <div>
+      <div className="flex flex-col">
         <input
+          className="mt-2 px-2 border border-solid border-gray-600"
           value={description}
           onChange={e => setDescriptin(e.target.value)}
           type="text"
           placeholder="A description for the link"
           />
         <input
+          className="mt-2 px-2 border border-solid border-gray-600"
           value={url}
           onChange={e => setUrl(e.target.value)}
           type="text"
@@ -34,7 +36,7 @@ export default function CreateLink(props) {
         variables={{ description, url }}
         onCompleted={() => props.history.push("/")}>
         {postMutation => (
-          <button onClick={postMutation}>Submit</button>
+          <button className="border border-solid border-gray-600 px-4 py2 mt-2" onClick={postMutation}>Submit</button>
         )}
       </Mutation>
     </div>
