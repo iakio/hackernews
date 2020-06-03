@@ -25,7 +25,7 @@ import { InMemoryCache } from "apollo-cache-inmemory"
 import { BrowserRouter } from "react-router-dom"
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql/api"
+  uri: "http://localhost:4000/api"
 })
 
 const client = new ApolloClient({

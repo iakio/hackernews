@@ -21,19 +21,21 @@ defmodule HackernewsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "create", PageController, :index
   end
 
-  scope "/graphql" do
+  scope "/api" do
     pipe_through :api
 
-    forward "/api", Absinthe.Plug,
+    forward "/", Absinthe.Plug,
       schema: HackernewsWeb.Schema
+  end
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL,
+  scope "/graphiql" do
+    forward "/", Absinthe.Plug.GraphiQL,
       schema: HackernewsWeb.Schema,
       interface: :simple,
       context: %{pubsub: HackernewsWeb.Endpoint}
-
   end
 
   # Other scopes may use custom stacks.
