@@ -1,10 +1,12 @@
 defmodule Hackernews.News.Link do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Hackernews.Accounts.User
 
   schema "links" do
     field :description, :string
     field :url, :string
+    belongs_to :posted_by, User
 
     timestamps()
   end
