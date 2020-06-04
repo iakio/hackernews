@@ -5,6 +5,7 @@ defmodule Hackernews.News.Link do
   schema "links" do
     field :description, :string
     field :url, :string
+    field :posted_by, :id
 
     timestamps()
   end
