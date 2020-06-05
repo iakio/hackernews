@@ -18,6 +18,10 @@ config :hackernews, HackernewsWeb.Endpoint,
   pubsub_server: Hackernews.PubSub,
   live_view: [signing_salt: "rzf9jbXA"]
 
+config :hackernews, Hackernews.Accounts.Guardian,
+  issuer: "hackernews",
+  secret_key: "FZMS7Dz1GH8wrk/bbF06tgWwYMgqypGb4cbGcB3WGfF/mgnEI6ZgwNI5kCwTlodw"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

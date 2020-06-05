@@ -47,6 +47,8 @@ defmodule Hackernews.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:absinthe_plug, "~> 1.4.0"},
       {:dataloader, "~> 1.0.0"},
+      {:guardian, "~> 2.0"},
+      {:argon2_elixir, "~> 2.3"},
     ]
   end
 
