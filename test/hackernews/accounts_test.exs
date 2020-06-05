@@ -33,7 +33,7 @@ defmodule Hackernews.AccountsTest do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
       assert user.email == "some email"
       assert user.name == "some name"
-      assert user.password == "some password"
+      assert {:ok, user} == Argon2.check_pass(user, "some password", hash_key: :password)
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -45,7 +45,7 @@ defmodule Hackernews.AccountsTest do
       assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
       assert user.email == "some updated email"
       assert user.name == "some updated name"
-      assert user.password == "some updated password"
+      assert {:ok, user} == Argon2.check_pass(user, "some updated password", hash_key: :password)
     end
 
     test "update_user/2 with invalid data returns error changeset" do
