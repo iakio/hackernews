@@ -44,11 +44,13 @@ defmodule HackernewsWeb.Schema do
       arg :name, non_null(:string)
       arg :email, non_null(:string)
       arg :password, non_null(:string)
+      resolve &NewsResolver.signup/3
     end
 
     field :signin, type: :auth_payload do
       arg :email, non_null(:string)
       arg :password, non_null(:string)
+      resolve &NewsResolver.signin/3
     end
   end
 end

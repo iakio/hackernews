@@ -21,7 +21,7 @@ defmodule HackernewsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "create", PageController, :index
+    get "/create", PageController, :index
   end
 
   scope "/api" do
