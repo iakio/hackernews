@@ -105,4 +105,10 @@ defmodule Hackernews.Accounts do
   def get_user_by_email!(email) do
     Repo.get_by!(User, email: email)
   end
+
+  def authorize(token) do
+    {:ok, claim} = Hackernews.Accounts.Guardian.decode_and_verify(token)
+    user = Repo.get_by!(User, String.to_integer(claim["sub"]))
+    {:ok, user}
+  end
 end

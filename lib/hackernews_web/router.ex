@@ -17,6 +17,10 @@ defmodule HackernewsWeb.Router do
       json_decoder: Jason
   end
 
+  pipeline :graphql do
+    plug HackernewsWeb.Context
+  end
+
   scope "/", HackernewsWeb do
     pipe_through :browser
 
@@ -26,6 +30,7 @@ defmodule HackernewsWeb.Router do
 
   scope "/api" do
     pipe_through :api
+    pipe_through :graphql
 
     forward "/", Absinthe.Plug,
       schema: HackernewsWeb.Schema
