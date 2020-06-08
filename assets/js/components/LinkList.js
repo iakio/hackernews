@@ -17,7 +17,7 @@ const FEED_QUERY = gql`
 
 export default function LinkList() {
   return (
-    <div className="bg-orange-100">
+    <div className="bg-orange-100 px-4 py-2">
       <Query query={FEED_QUERY}>
         {({ loading, error, data }) => {
           if (loading) return <div>Fetching</div>

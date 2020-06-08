@@ -26,6 +26,7 @@ defmodule HackernewsWeb.Router do
 
     get "/", PageController, :index
     get "/create", PageController, :index
+    get "/login", PageController, :index
   end
 
   scope "/api" do
