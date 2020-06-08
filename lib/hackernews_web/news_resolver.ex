@@ -18,7 +18,7 @@ defmodule HackernewsWeb.NewsResolver do
     end
   end
 
-  def signin(_root, %{email: email, password: password}, _info) do
+  def login(_root, %{email: email, password: password}, _info) do
     user = Accounts.get_user_by_email!(email)
     if Argon2.verify_pass(password, user.password) do
       {:ok, token, _claim} = Guardian.encode_and_sign(user)
