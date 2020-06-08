@@ -1,10 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { withRouter } from "react-router"
+import { AUTH_TOKEN } from "../constants"
 
-const AUTH_TOKEN = 'auth-token'
-
-function Header() {
+function Header(props) {
   const authToken = localStorage.getItem(AUTH_TOKEN)
 
   return (
@@ -13,7 +12,7 @@ function Header() {
         <div className="mx-2 font-bold">Hacker News</div>
         <Link className="hover:underline" to="/">new</Link>
         {authToken && (
-          <div>
+          <div className="flex flex-row">
             <div className="mx-2">|</div>
             <Link className="hover:underline" to="/create">submit</Link>
           </div>
@@ -21,7 +20,13 @@ function Header() {
         <div className="mx-2 flex-auto text-right">
           {authToken ? (
             <div>
-              Logout  
+              <a
+                className="hover:underline"
+                onClick={() => {
+                  localStorage.removeItem(AUTH_TOKEN)
+                  props.history.push(`/`)
+                }}
+              >logout</a>
             </div>
           ) : (
             <div>
