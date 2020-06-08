@@ -3,7 +3,7 @@ import React from "react"
 
 export default function Link(props) {
   return (
-    <div className="ml-4">
+    <div>
       {props.link.description}
       <span className="ml-2 text-sm text-gray-600">
         (<a href={props.link.url} className="hover:underline">{props.link.url}</a>)
