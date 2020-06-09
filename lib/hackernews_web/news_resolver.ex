@@ -7,8 +7,8 @@ defmodule HackernewsWeb.NewsResolver do
     {:ok, %{links: links}}
   end
 
-  def create_link(_root, args, _info) do
-    News.create_link(args)
+  def create_link(_root, args, %{context: %{current_user: %{id: id}}}) do
+    News.create_link(Map.put(args, :posted_by, %{id: id}))
   end
 
   def signup(_root, args, _info) do
