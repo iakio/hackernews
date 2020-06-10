@@ -10,6 +10,9 @@ const FEED_QUERY = gql`
         id
         url
         description
+        postedBy {
+          name
+        }
       }
     }
   }
@@ -25,8 +28,8 @@ export default function LinkList() {
 
           const linksToRender = data.feed.links
 
-          return linksToRender.map(link =>
-            <Link key={link.id} link={link} />
+          return linksToRender.map((link, index) =>
+            <Link key={link.id} link={link} index={index} />
           )
         }}
       </Query>
