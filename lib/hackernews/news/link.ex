@@ -14,7 +14,7 @@ defmodule Hackernews.News.Link do
   @doc false
   def changeset(link, attrs) do
     link
-    |> cast(attrs, [:url, :description])
+    |> cast(attrs, [:url, :description, :posted_by_id])
     |> validate_required([:url, :description])
   end
 end

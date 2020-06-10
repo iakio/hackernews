@@ -7,7 +7,9 @@ defmodule HackernewsWeb.Schema do
     field :id, non_null(:id)
     field :url, non_null(:string)
     field :description, non_null(:string)
-    field :posted_by, :user
+    field :posted_by, :user do
+      resolve &NewsResolver.posted_by/3
+    end
   end
 
   object :auth_payload do

@@ -2,13 +2,22 @@ defmodule HackernewsWeb.NewsResolver do
   alias Hackernews.News
   alias Hackernews.Accounts
   alias Hackernews.Accounts.Guardian
+  require Logger
   def feed(_root, _args, _info) do
     links = News.list_links()
     {:ok, %{links: links}}
   end
 
+  def posted_by(%{posted_by: id}, _args, _info) do
+    if id == nil do
+      {:ok, nil}
+    else
+      {:ok, Accounts.get_user!(id)}
+    end
+  end
+
   def create_link(_root, args, %{context: %{current_user: %{id: id}}}) do
-    News.create_link(Map.put(args, :posted_by, %{id: id}))
+    News.create_link(Map.put(args, :posted_by_id, id))
   end
 
   def signup(_root, args, _info) do
