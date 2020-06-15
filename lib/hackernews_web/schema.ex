@@ -1,14 +1,28 @@
 defmodule HackernewsWeb.Schema do
   use Absinthe.Schema
 
+  import Absinthe.Resolution.Helpers
+
+  import Ecto.Query
+
   alias HackernewsWeb.NewsResolver
+  alias Hackernews.Accounts.User
+
+  def users_by_id(_, user_ids) do
+    users = Hackernews.Repo.all from u in User, where: u.id in ^user_ids
+    Map.new(users, fn user -> {user.id, user} end)
+  end
 
   object :link do
     field :id, non_null(:id)
     field :url, non_null(:string)
     field :description, non_null(:string)
     field :posted_by, :user do
-      resolve &NewsResolver.posted_by/3
+      resolve fn link, _, _ ->
+        batch({__MODULE__, :users_by_id}, link.posted_by, fn batch_results ->
+          {:ok, Map.get(batch_results, link.posted_by)}
+        end)
+      end
     end
   end
 
