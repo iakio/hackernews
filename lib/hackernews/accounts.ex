@@ -111,4 +111,13 @@ defmodule Hackernews.Accounts do
     user = Repo.get!(User, String.to_integer(claim["sub"]))
     {:ok, user}
   end
+
+  def data() do
+    Dataloader.Ecto.new(Repo, query: &query/2)
+  end
+
+  def query(queryable, _params) do
+    queryable
+  end
+
 end
