@@ -73,5 +73,10 @@ defmodule HackernewsWeb.Schema do
       arg :password, non_null(:string)
       resolve &NewsResolver.login/3
     end
+
+    field :vote, type: :vote do
+      arg :link_id, non_null(:id)
+      resolve &NewsResolver.vote/3
+    end
   end
 end

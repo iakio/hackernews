@@ -110,6 +110,11 @@ defmodule Hackernews.News do
     |> Repo.insert()
   end
 
+  def vote_exists!(link_id, user_id) do
+    query = from v in Vote, where: v.link_id == ^link_id and v.user_id == ^user_id
+    Repo.exists?(query)
+  end
+
   def data() do
     Dataloader.Ecto.new(Repo, query: &query/2)
   end
