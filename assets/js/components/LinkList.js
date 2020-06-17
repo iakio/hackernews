@@ -13,6 +13,9 @@ const FEED_QUERY = gql`
         postedBy {
           name
         }
+        votes {
+          id
+        }
       }
     }
   }

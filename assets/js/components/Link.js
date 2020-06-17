@@ -20,7 +20,7 @@ export default function Link(props) {
           </span>
         </div>
         <div className="text-sm text-gray-600 leading-none">
-          0 votes{' '}
+          {props.link.votes.length} votes{' '}
           by{' '}
           {props.link.postedBy ? props.link.postedBy.name : 'Unknown'}
         </div>
