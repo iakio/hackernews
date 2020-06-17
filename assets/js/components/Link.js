@@ -7,6 +7,12 @@ const VOTE_MUTATION = gql`
   mutation VoteMutation($linkId: ID!) {
     vote(linkId: $linkId) {
       id
+      link {
+        id
+        votes {
+          id
+        }
+      }
     }
   }
 `
@@ -20,12 +26,15 @@ export default function Link(props) {
         {authToken && (
           <Mutation
             mutation={VOTE_MUTATION}
-            variables={{ linkId: props.link.id }}>
-              {voteMutation => (
-                <div className="ml-1 text-gray-600 text-xs cursor-pointer" onClick={voteMutation}>
-                  ▲
-                </div>
-              )}
+            variables={{ linkId: props.link.id }}
+            update={(store, { data: { vote } }) => {
+              props.updateStoreAfterVote(store, vote, props.link.id)
+            }}>
+            {voteMutation => (
+              <div className="ml-1 text-gray-600 text-xs cursor-pointer" onClick={voteMutation}>
+                ▲
+              </div>
+            )}
           </Mutation>
         )}
       </div>
