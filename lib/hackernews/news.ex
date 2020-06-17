@@ -7,6 +7,7 @@ defmodule Hackernews.News do
   alias Hackernews.Repo
 
   alias Hackernews.News.Link
+  alias Hackernews.News.Vote
 
   @doc """
   Returns the list of links.
@@ -101,4 +102,20 @@ defmodule Hackernews.News do
   def change_link(%Link{} = link, attrs \\ %{}) do
     Link.changeset(link, attrs)
   end
+
+
+  def create_vote(attrs \\ %{}) do
+    %Vote{}
+    |> Vote.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def data() do
+    Dataloader.Ecto.new(Repo, query: &query/2)
+  end
+
+  def query(queryable, _params) do
+    queryable
+  end
+
 end

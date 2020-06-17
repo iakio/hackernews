@@ -62,5 +62,10 @@ defmodule Hackernews.NewsTest do
       link = link_fixture()
       assert %Ecto.Changeset{} = News.change_link(link)
     end
+
+    test "list_votes_by_link/1 returns a list of votes of the link" do
+      assert %{id: id} = link_fixture()
+      assert {:ok, vote} = News.create_vote(%{link_id: id, user_id: 0})
+    end
   end
 end
