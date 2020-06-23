@@ -12,11 +12,12 @@ defmodule Hackernews.Application do
       # Start the Telemetry supervisor
       HackernewsWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Hackernews.PubSub},
+      {Phoenix.PubSub, [name: Hackernews.PubSub, adapter: Phoenix.PubSub.PG2]},
       # Start the Endpoint (http/https)
-      HackernewsWeb.Endpoint
+      HackernewsWeb.Endpoint,
       # Start a worker by calling: Hackernews.Worker.start_link(arg)
       # {Hackernews.Worker, arg}
+      {Absinthe.Subscription, HackernewsWeb.Endpoint}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

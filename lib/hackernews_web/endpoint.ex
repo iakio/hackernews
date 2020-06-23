@@ -1,5 +1,7 @@
 defmodule HackernewsWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :hackernews
+  use Absinthe.Phoenix.Endpoint,
+    schema: HackernewsWeb.Schema
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.

@@ -40,6 +40,7 @@ defmodule HackernewsWeb.Router do
   scope "/graphiql" do
     forward "/", Absinthe.Plug.GraphiQL,
       schema: HackernewsWeb.Schema,
+      socket: HackernewsWeb.UserSocket,
       interface: :simple,
       context: %{pubsub: HackernewsWeb.Endpoint}
   end
